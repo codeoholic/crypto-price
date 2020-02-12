@@ -1,11 +1,12 @@
 {
   "name": "crypto-price",
   "version": "1.0.0",
-  "description": "",
+  "description": "BTC price in USD.",
   "main": "index.js",
   "dependencies": {
     "electron-fetch": "^1.4.0",
-    "menubar": "^7.2.0"
+    "menubar": "^7.2.0",
+    "nwjs-macappstore-builder": "^3.1.6"
   },
   "devDependencies": {
     "electron": "^7.1.11"

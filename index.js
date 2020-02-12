@@ -7,11 +7,15 @@ const mb = menubar({
     tooltip: "BTC Price",
     icon: "icon.png"
 });
-
 function getRemainingTime() {
     return fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
     .then(res => res.json())
-    .then(body => { console.log(body.bpi.USD); return String.fromCharCode('36')+body.bpi.USD.rate_float.toFixed(2).toString()})
+    .then(body => {
+        console.log(body.bpi.USD.rate_float);
+        var price = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 }).format(body.bpi.USD.rate_float);
+        console.log(price);
+        return String.fromCharCode('36')+price}
+    )
 }
 
 function overrideClick() {
@@ -29,6 +33,9 @@ function setRightClickMenu() {
     ]);
     mb.tray.on("right-click", () => {
         mb.tray.popUpContextMenu(contextMenu);
+    });
+    mb.tray.on("click", () => {
+        console.log('left click');
     });
 }
 async function updateValue() {
